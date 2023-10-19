@@ -5,5 +5,17 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <p>p diddy</p>
+  <ion-item *ngIf="contact">
+    <ion-label>
+      Name: {{contact?.name}}
+      <p *ngIf="contact?.phones" style="margin-top: 4px; display: flex; flex-direction: column">
+        <ion-text>
+          Phone numbers:
+        </ion-text>
+        <ion-text *ngFor="let contact of contact.phones" style="margin-top: 4px">
+          {{ contact.phone }}
+        </ion-text>
+      </p>
+    </ion-label>
+  </ion-item>
 </ion-content>

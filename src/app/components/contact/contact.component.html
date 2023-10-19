@@ -1,9 +1,9 @@
 <ion-item (click)="navigateToContactDetails(contact)">
   <ion-label>
-    {{contact?.name?.display}}
-    <p *ngIf="contact?.phones" style="margin-top: 3px;">
+    {{contact?.name}}
+    <p *ngIf="contact?.phones" style="margin-top: 4px;">
       <ion-text>
-        {{contact?.phones[0].number}}
+        {{contact?.phones[0].phone}}
       </ion-text>
     </p>
   </ion-label>

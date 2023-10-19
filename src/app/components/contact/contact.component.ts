@@ -1,8 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IonicModule} from "@ionic/angular";
-import {Contacts, GetContactsResult} from "@capacitor-community/contacts";
 import {CommonModule} from "@angular/common";
 import {Router} from "@angular/router";
+import { ContactService } from "../../services/contact.service";
+import {Contact} from "../../interfaces/contact";
 
 @Component({
   selector: 'app-contact',
@@ -14,10 +15,11 @@ import {Router} from "@angular/router";
 export class ContactComponent {
   @Input() contact: any
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private contactService: ContactService) {
   }
 
-  navigateToContactDetails(contact: any) {
-    this.router.navigate(['/details', contact]);
+  navigateToContactDetails(contact: Contact) {
+    this.contactService.setSelectedContact(contact);
+    this.router.navigate(['/details', contact.contactId]);
   }
 }

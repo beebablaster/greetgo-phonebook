@@ -8,27 +8,35 @@ import {Email} from "../interfaces/email";
   providedIn: 'root'
 })
 export class ContactService {
-
+  selectedContact: Contact | null = null;
   constructor() {}
+
+  setSelectedContact(contact: Contact) {
+    this.selectedContact = contact;
+  }
+
+  getSelectedContact() {
+    return this.selectedContact;
+  }
 
    convertToContactArray(contacts: any[]): Contact[] {
       return contacts.map((contact) => this.convertToContact(contact));
     }
 
    convertToContact(contact: any): Contact {
-    const contactId = contact.contactId;
-    const name = contact.name.display;
-    const emails = contact.emails.map((email: any) => ({
-      type: email.type,
-      isPrimary: email.isPrimary,
-      address: email.address,
-    }))
-    const phones = contact.phones.map((phoneData: any) => ({
-      type: phoneData.type,
-      isPrimary: phoneData.isPrimary,
-      phone: phoneData.number,
-    }));
-    const organization = contact.organization.company;
+    const contactId = contact.contactId || '';
+    const name = contact.name?.display || '';
+    const emails = contact.emails?.map((email: any) => ({
+      type: email.type || '',
+      isPrimary: email.isPrimary || false,
+      address: email.address || '',
+    })) || []
+    const phones = contact.phones?.map((phoneData: any) => ({
+      type: phoneData.type || '',
+      isPrimary: phoneData.isPrimary || false,
+      phone: phoneData.number || '',
+    })) || [];
+    const organization = contact.organization?.company || '';
 
     const convertedContact: Contact = { contactId, name, emails, phones, organization };
     return convertedContact;
@@ -49,9 +57,8 @@ export class ContactService {
             birthday: true
           }
         });
-        // const convertedContacts = this.convertToContactArray(result.contacts)
-        // console.log(convertedContacts)
-        return result.contacts;
+        const convertedContacts = this.convertToContactArray(result.contacts)
+        return convertedContacts
       }
     } catch(e) {
       console.error('Error fetching contacts:', e);
