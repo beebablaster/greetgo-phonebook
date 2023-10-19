@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-auth',
@@ -8,6 +9,13 @@ import { IonicModule } from '@ionic/angular';
   standalone: true,
   imports: [IonicModule],
 })
-export class AuthPage {
-  constructor() {}
+export class AuthPage implements OnInit{
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+  }
+
+  navigateToHomePage(){
+    this.router.navigate(['/home'])
+  }
 }
