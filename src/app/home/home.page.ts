@@ -15,10 +15,13 @@ import {Contact} from "../interfaces/contact";
 })
 export class HomePage implements OnInit {
   contacts: Contact[] = []
-  constructor(private contactService: ContactService) {}
+  constructor(private contactService: ContactService, private router: Router) {}
    ngOnInit() {
      this.contactService.getContacts().then((result: any) => {
        this.contacts = result
     })
+  }
+  navigateToQrPage() {
+    this.router.navigate(['/qr']);
   }
 }

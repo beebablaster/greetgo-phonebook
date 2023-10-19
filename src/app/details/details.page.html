@@ -11,12 +11,31 @@
   <ion-item *ngIf="contact">
     <ion-label>
       Name: {{contact?.name}}
+      <p *ngIf="contact?.organization" style="margin-top: 4px">
+        <ion-text style="margin-top: 12px">
+          Organization: {{contact.organization}}
+        </ion-text>
+      </p>
       <p *ngIf="contact?.phones" style="margin-top: 4px; display: flex; flex-direction: column">
-        <ion-text>
+        <ion-text style="font-weight: bold">
           Phone numbers:
         </ion-text>
-        <ion-text *ngFor="let contact of contact.phones" style="margin-top: 4px">
-          {{ contact.phone }}
+        <ion-text *ngFor="let contact of contact.phones" style="display:flex; flex-direction:column; margin-top: 4px; gap: 16px;">
+          <ion-text style="display:flex; flex-direction:column; margin-top: 4px">
+          <ion-text>{{ contact.phone }}</ion-text>
+          <ion-text>Phone type: {{contact.type}}</ion-text>
+          <ion-text>{{contact.isPrimary? 'Primary': 'Not primary'}}</ion-text>
+          </ion-text>
+        </ion-text>
+        <ion-text *ngIf="contact?.emails" style="margin-top: 12px; font-weight: bold">
+          Email addresses:
+        </ion-text>
+        <ion-text *ngFor="let email of contact.emails" style="display:flex; flex-direction:column; margin-top: 4px; gap: 16px;">
+          <ion-text style="display:flex; flex-direction:column; margin-top: 4px">
+          <ion-text>{{ email.address }}</ion-text>
+          <ion-text>Email type: {{email.type}}</ion-text>
+          <ion-text>{{email.isPrimary? 'Primary': 'Not primary'}}</ion-text>
+          </ion-text>
         </ion-text>
       </p>
     </ion-label>

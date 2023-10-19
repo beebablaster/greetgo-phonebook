@@ -30,12 +30,12 @@ export class ContactService {
       type: email.type || '',
       isPrimary: email.isPrimary || false,
       address: email.address || '',
-    })) || []
+    })) || null;
     const phones = contact.phones?.map((phoneData: any) => ({
       type: phoneData.type || '',
       isPrimary: phoneData.isPrimary || false,
       phone: phoneData.number || '',
-    })) || [];
+    })) || null;
     const organization = contact.organization?.company || '';
 
     const convertedContact: Contact = { contactId, name, emails, phones, organization };
