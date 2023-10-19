@@ -1,4 +1,4 @@
-<ion-item>
+<ion-item (click)="navigateToContactDetails(contact)">
   <ion-label>
     {{contact?.name?.display}}
     <p *ngIf="contact?.phones" style="margin-top: 3px;">

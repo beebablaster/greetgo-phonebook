@@ -10,8 +10,16 @@ export const routes: Routes = [
     loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
   },
   {
+    path: 'details/:id',
+    loadComponent: () => import('./details/details.page').then((m) => m.DetailsPage),
+  },
+  {
     path: '',
     redirectTo: 'auth',
     pathMatch: 'full',
+  },
+  {
+    path: 'details',
+    loadComponent: () => import('./details/details.page').then( m => m.DetailsPage)
   },
 ];
