@@ -1,15 +1,10 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Contact List</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <ion-list>
-    <ion-item *ngFor="let contact of contacts">
-      <ion-label>
-        <h2>{{ contact }}</h2>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-</ion-content>
+<ion-item>
+  <ion-label>
+    {{contact?.name?.display}}
+    <p *ngIf="contact?.phones" style="margin-top: 3px;">
+      <ion-text>
+        {{contact?.phones[0].number}}
+      </ion-text>
+    </p>
+  </ion-label>
+</ion-item>
